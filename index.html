@@ -1,0 +1,826 @@
+<!--
+  Carlota's Jewelry - Escaparate Digital
+  Objetivo: Inspiración visual, generación de tráfico a la tienda física y contacto.
+  Estrategia: Header limpio y fijo con CTA de conversión, y contenido que enfatiza el estilo y la durabilidad.
+  ESTILO ACTUALIZADO: Rosa como color predominante y diseño 100% responsivo.
+-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carlota's Jewelry - Estilo Diario. Brillo que Perdura.</title>
+    
+    <!-- Fuentes: Playfair Display (Títulos) y Poppins (Cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Librería Swiper para el carrusel de galería -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <style>
+        /* ======== CONFIGURACIÓN GLOBAL ======== */
+        :root {
+            --pink-color: #FFC0CB; /* Rosado principal (Botones, detalles) */
+            --soft-pink: #FFF0F5; /* Rosado muy suave (Fondo base) */
+            --mid-pink: #FFDDEE; /* Rosado medio (Para secciones de contraste) */
+            --dark-text: #333333; /* Texto principal oscuro */
+            --light-text: #ffffff; /* Texto claro */
+            --gray-text: #666666; /* Texto secundario */
+            --font-primary: 'Playfair Display', serif; /* Títulos y eslogan */
+            --font-secondary: 'Poppins', sans-serif; /* Párrafos y botones */
+            --nav-height: 70px; /* Altura fija de la navegación */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            color: var(--dark-text);
+            /* FONDO BASE PREDOMINANTEMENTE ROSA SUAVE */
+            background-color: var(--soft-pink); 
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-primary);
+            font-weight: 700;
+        }
+
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--dark-text);
+        }
+
+        p {
+            line-height: 1.7;
+            color: var(--gray-text);
+        }
+
+        /* ======== BARRA DE NAVEGACIÓN FIJA (HEADER OPTIMIZADO) ======== */
+        .main-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--nav-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-logo {
+            font-family: var(--font-primary);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 400;
+            padding: 5px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-bottom 0.3s ease, color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--pink-color);
+            border-bottom: 2px solid var(--pink-color);
+        }
+
+        /* Espacio para que el contenido no quede bajo la nav */
+        main {
+            padding-top: var(--nav-height);
+        }
+
+        /* Botones generales */
+        .cta-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--pink-color);
+            color: var(--dark-text);
+            border: 2px solid var(--pink-color);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 50px;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 192, 203, 0.4); /* Sombra suave */
+        }
+
+        .cta-button:hover {
+            background-color: transparent;
+            color: var(--pink-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(255, 192, 203, 0.6);
+        }
+
+        /* Botón Secundario (Ahora con borde oscuro para destacar sobre el rosa) */
+        .cta-button.secondary {
+            background-color: transparent;
+            color: var(--dark-text);
+            border: 2px solid var(--dark-text);
+            box-shadow: none;
+        }
+
+        .cta-button.secondary:hover {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+        }
+        
+        /* CTA de la barra de navegación */
+        .primary-nav-cta {
+            padding: 8px 20px;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 8px rgba(255, 192, 203, 0.5);
+        }
+
+        /* ======== ANIMACIÓN FADE-IN ======== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        /* ======== HERO PRINCIPAL ======== */
+        .hero {
+            height: calc(100vh - var(--nav-height));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--light-text);
+            position: relative;
+            /* Usar una URL de placeholder para el banner */
+            background: url('img/banner.jpeg') no-repeat center center/cover;
+            margin-top: -1px;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInContent 1.5s ease-in-out;
+            padding: 20px;
+        }
+
+        .hero .brand-name {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .hero .slogan {
+            font-size: 1.5rem;
+            font-family: var(--font-secondary);
+            font-weight: 300;
+            color: var(--light-text);
+            margin-bottom: 30px;
+        }
+
+        /* ======== SECCIÓN SOBRE NOSOTROS ======== */
+        #about { 
+            /* Fondo de contraste rosa medio */
+            background-color: var(--mid-pink); 
+        }
+        .about-text h2 {
+            /* Texto oscuro en fondo de contraste */
+            color: var(--dark-text);
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .about-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        /* ======== COLECCIONES ======== */
+        #collections {
+             /* Fondo más claro (fondo base) */
+            background-color: var(--soft-pink); 
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            text-decoration: none;
+            color: var(--light-text);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .collection-card img {
+            width: 100%;
+            height: 300px; /* Altura fija para uniformidad */
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .collection-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .collection-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            text-align: center;
+        }
+
+        .collection-info h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        /* ======== GALERÍA (CARRUSEL) ======== */
+        .gallery-section {
+            /* Fondo de contraste rosa medio */
+            background-color: var(--mid-pink); 
+            padding: 80px 0;
+            overflow: hidden; 
+        }
+
+        .gallery-section .container {
+            padding-left: 0;
+            padding-right: 0;
+            max-width: 100%;
+        }
+
+        .gallery-section h2 {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .swiper-container {
+            width: 100%;
+            height: 400px; /* Altura fija para el carrusel */
+            padding: 20px 0 40px 0;
+        }
+
+        .swiper-slide {
+            height: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.4s ease, opacity 0.4s ease;
+            opacity: 0.8;
+            transform: scale(0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .swiper-slide-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .swiper-pagination-bullet-active {
+            background: var(--pink-color);
+        }
+
+
+        /* ======== TESTIMONIOS Y CALIDAD ======== */
+        #testimonials { 
+            /* Fondo más claro (fondo base) */
+            background-color: var(--soft-pink); 
+        }
+
+        .testimonials-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+            text-align: center;
+        }
+
+        .testimonial {
+            max-width: 600px;
+        }
+
+        .testimonial p {
+            font-family: var(--font-primary);
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--dark-text);
+        }
+
+        .testimonial span {
+            display: block;
+            margin-top: 10px;
+            font-weight: 500;
+            color: var(--pink-color);
+        }
+
+        .quality-badge {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            /* El badge usa el rosa más fuerte para destacarse sobre el fondo suave */
+            background: var(--pink-color); 
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .quality-badge p {
+            margin: 0;
+            color: var(--dark-text);
+            font-weight: 700;
+        }
+        
+        .quality-badge img {
+            filter: grayscale(100%);
+        }
+
+        /* ======== CTA FINAL ======== */
+        #final-cta {
+            text-align: center;
+            /* La sección CTA final usa el rosa principal para un impacto máximo */
+            background-color: var(--pink-color); 
+        }
+
+        #final-cta h2, #final-cta p {
+            color: var(--dark-text);
+        }
+
+        #final-cta .cta-buttons {
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Botones en CTA Final - Invertidos (fondo blanco, borde/hover dark) */
+        #final-cta .cta-button {
+            background-color: #fff;
+            border-color: #fff;
+            color: var(--dark-text);
+        }
+        #final-cta .cta-button:hover {
+            background-color: transparent;
+            color: var(--dark-text);
+            border-color: var(--dark-text);
+        }
+        #final-cta .cta-button.secondary {
+            background-color: transparent;
+            border-color: var(--dark-text);
+            color: var(--dark-text);
+        }
+        #final-cta .cta-button.secondary:hover {
+            background-color: var(--dark-text);
+            color: var(--light-text);
+        }
+
+        /* ======== UBICACIÓN Y CONTACTO ======== */
+        #location {
+             /* Fondo de contraste rosa medio */
+            background-color: var(--mid-pink); 
+        }
+        .location-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 50px;
+        }
+
+        .location-info { flex: 1; }
+        .location-map { flex: 1; border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+
+        .whatsapp-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #25D366;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: scale(1.05);
+        }
+
+        /* ======== FOOTER ======== */
+        .footer {
+            /* CAMBIO CLAVE: Usamos el color más claro (soft-pink) para separarlo de la ubicación (mid-pink) */
+            background-color: var(--soft-pink); 
+            padding-top: 60px;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .footer-brand h4 { font-size: 1.5rem; }
+        .footer-social { display: flex; gap: 15px; }
+        .footer-social img { width: 24px; height: 24px; opacity: 0.6; transition: opacity 0.3s ease; }
+        .footer-social a:hover img { opacity: 1; }
+        .footer-links { display: flex; gap: 20px; }
+        .footer-links a { text-decoration: none; color: var(--gray-text); transition: color 0.3s ease; }
+        .footer-links a:hover { color: var(--pink-color); }
+
+        .footer-bottom {
+            text-align: center;
+            /* Se hace más pequeño para no competir con el footer-content, pero le añadimos una línea de separación */
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--pink-color); /* Línea divisoria clara */
+        }
+        .footer-bottom p { font-size: 0.9rem; color: var(--gray-text); }
+
+        /* ======== KEYFRAMES Y MEDIA QUERIES ======== */
+        @keyframes fadeInContent {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Tablets (hasta 1024px) */
+        @media (max-width: 1024px) {
+            .collections-grid { grid-template-columns: repeat(2, 1fr); }
+            .main-nav { padding: 0 20px; }
+            .nav-links { gap: 15px; }
+        }
+
+
+        /* Móviles (hasta 768px) - RESPONSIVO CLAVE */
+        @media (max-width: 768px) {
+            h2 { font-size: 2rem; }
+            .hero .brand-name { font-size: 3rem; }
+            .hero .slogan { font-size: 1.2rem; }
+            
+            /* Navegación en Móvil: El logo al centro, el CTA abajo y visible */
+            .main-nav { 
+                flex-wrap: wrap; 
+                height: auto; 
+                padding: 10px 20px; 
+                justify-content: center;
+            }
+            .nav-logo { 
+                width: 100%; 
+                text-align: center; 
+                margin-bottom: 5px; /* Más compacto */
+            }
+            .nav-links { 
+                display: none; /* Ocultamos el menú principal para ahorrar espacio y priorizar el CTA */ 
+            }
+            .primary-nav-cta { 
+                margin-top: 5px; 
+                width: 100%; 
+                text-align: center; 
+                padding: 10px 20px;
+            }
+            
+            .about-content, .location-content { flex-direction: column; }
+            
+            .about-text { text-align: center; }
+            .about-text h2 { text-align: center; }
+            .about-content { flex-direction: column-reverse; }
+
+            .location-map { height: 250px; }
+        }
+
+        /* Móviles pequeños (hasta 480px) */
+        @media (max-width: 480px) {
+            .container { padding: 60px 20px; }
+            .hero .brand-name { font-size: 2.5rem; }
+            .hero .slogan { font-size: 1rem; }
+
+            .collections-grid { grid-template-columns: 1fr; }
+
+            .gallery-section { padding: 60px 0; }
+
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-links { flex-direction: column; gap: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BARRA FIJA - OPTIMIZACIÓN DEL HEADER (Siempre visible y funcional) -->
+    <nav class="main-nav">
+        <a href="#" class="nav-logo">Carlota's Jewelry</a>
+        <div class="nav-links">
+            <a href="#collections">Colecciones</a>
+            <a href="#about">Nosotros</a>
+            <a href="#gallery">Galería</a>
+            <a href="#location">Ubicación</a>
+        </div>
+        <!-- CTA PRINCIPAL QUE DIRIGE A LA CONVERSIÓN FÍSICA/CONTACTO (Máxima prioridad) -->
+        <a href="#location" class="cta-button primary-nav-cta">Visitar la Tienda</a>
+    </nav>
+    
+    <!-- HERO PRINCIPAL (Primer impacto visual) -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="brand-name">Carlota's Jewelry</h1>
+            <p class="slogan">Estilo Diario. Brillo que Perdura.</p>
+            <!-- CTA SECUNDARIO DENTRO DEL HERO -->
+            <a href="https://www.instagram.com/carlotasjewelry_/" target="_blank" class="cta-button secondary">Descubre más en Instagram</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SOBRE NOSOTROS (Conexión Emocional) - Fondo Rosa Medio -->
+        <section id="about" class="container fade-in">
+            <div class="about-content">
+                <div class="about-image">
+                    <!-- Placeholder para el logo o una foto de la tienda/equipo -->
+                    <img src="https://placehold.co/500x350/FFC0CB/333333?text=Nuestra+Tienda" alt="Logo Carlota's Jewelry o interior de la tienda" onerror="this.onerror=null; this.src='https://placehold.co/500x350/FFC0CB/333333?text=Nuestra+Tienda';" >
+                </div>
+                <div class="about-text">
+                    <h2>Tu brillo es nuestra misión</h2>
+                    <p>Nos obsesiona encontrar las joyas que se robarán todas las miradas. Más que una tienda, somos tus cómplices de estilo, dedicadas a seleccionar piezas únicas que te harán sentir poderosa y especial. Olvídate de buscar, nuestra colección está pensada para que tú solo tengas que elegir cómo quieres deslumbrar hoy. Porque la vida es muy corta para usar joyas aburridas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- COLECCIONES (Guía de navegación del catálogo) - Fondo Rosa Suave (Base) -->
+        <section id="collections" class="container fade-in">
+            <h2>Nuestras Colecciones</h2>
+            <div class="collections-grid">
+                <!-- Se asume que estos enlaces llevan a una página de catálogo DENTRO del sitio, no a Instagram, para mantener al usuario en el escaparate. -->
+                <a href="/catalogo/anillos" class="collection-card">
+                    <img src="https://images.pexels.com/photos/265906/pexels-photo-265906.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Anillos de lujo" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFC0CB/333333?text=Anillos';" >
+                    <div class="collection-info"><h3>Anillos</h3></div>
+                </a>
+                <a href="/catalogo/collares" class="collection-card">
+                    <img src="https://images.pexels.com/photos/10313837/pexels-photo-10313837.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Collares elegantes" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFC0CB/333333?text=Collares';">
+                    <div class="collection-info"><h3>Collares</h3></div>
+                </a>
+                <a href="/catalogo/aretes" class="collection-card">
+                    <img src="https://images.pexels.com/photos/2735970/pexels-photo-2735970.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Aretes sofisticados" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFC0CB/333333?text=Aretes';">
+                    <div class="collection-info"><h3>Aretes</h3></div>
+                </a>
+                <a href="/catalogo/pulseras" class="collection-card">
+                    <img src="https://images.pexels.com/photos/3305451/pexels-photo-3305451.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Pulseras con estilo" onerror="this.onerror=null; this.src='https://placehold.co/400x300/FFC0CB/333333?text=Pulseras';">
+                    <div class="collection-info"><h3>Pulseras</h3></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- GALERÍA (Inspiración y Estilo) - Fondo Rosa Medio -->
+        <section id="gallery" class="gallery-section fade-in">
+            <div class="container">
+                <h2>Brilla con Nosotros</h2>
+                <div class="swiper-container mySwiper">
+                    <div class="swiper-wrapper">
+                        <!-- Imágenes de stock o de Instagram de alta calidad -->
+                        <div class="swiper-slide"><img src="https://st4.depositphotos.com/10614052/25377/i/450/depositphotos_253779240-stock-photo-young-woman-with-beautiful-jewelry.jpg" alt="Joya en modelo 1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFC0CB/333333?text=Look+1';" /></div>
+                        <div class="swiper-slide"><img src="https://www.baunat.com/library/photos/454616_bride03.jpg" alt="Detalle de joya 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFC0CB/333333?text=Look+2';" /></div>
+                        <div class="swiper-slide"><img src="https://www.joyeriadiamanti.com/wp-content/uploads/2024/03/Sortijas-de-oro-para-mujer1-1024x576.jpg" alt="Joya en modelo 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFC0CB/333333?text=Look+3';" /></div>
+                        <div class="swiper-slide"><img src="https://media.istockphoto.com/id/1540951542/es/foto/mujer-joven-con-un-brazalete-de-oro.jpg?s=612x612&w=0&k=20&c=vOL1i_j2C3kaxfkLiNMkCZ96jkTevWU4y1jkSmcn_Zs=" alt="Detalle de joya 4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFC0CB/333333?text=Look+4';" /></div>
+                        <div class="swiper-slide"><img src="https://images.pexels.com/photos/2849743/pexels-photo-2849743.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Joya en modelo 5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/FFC0CB/333333?text=Look+5';" /></div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TESTIMONIOS (Refuerzo de la credibilidad y el servicio) - Fondo Rosa Suave (Base) -->
+        <section id="testimonials" class="container fade-in">
+            <h2>Lo que dicen nuestras clientas</h2>
+            <div class="testimonials-content">
+                <!-- BADGE DE CALIDAD (Fondo con el color principal PINK-COLOR para máxima visibilidad) -->
+                <div class="quality-badge">
+                    <!-- Icono de calidad/garantía -->
+                    <svg fill="#333333" width="24px" height="24px" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" style="opacity: 0.8;">
+                        <title>Certificado</title>
+                        <path d="M29 3c0.552 0 1 0.448 1 1v22c0 0.552-0.448 1-1 1s-1-0.448-1-1v-22c0-0.552 0.448-1 1-1zM11 10c0 0.552-0.448 1-1 1h-6c-0.552 0-1-0.448-1-1s0.448-1 1-1h6c0.552 0 1 0.448 1 1zM15 16c0 0.552-0.448 1-1 1h-10c-0.552 0-1-0.448-1-1s0.448-1 1-1h10c0.552 0 1 0.448 1 1zM19 22c0 0.552-0.448 1-1 1h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1zM29 3h-24v26h18.25c-0.231-0.301-0.419-0.648-0.547-1h-12.703v-24h23v2.855c0.669 0.165 1.303 0.417 1.889 0.761v-4.616zM28 20c-4.418 0-8 3.582-8 8s3.582 8 8 8 8-3.582 8-8-3.582-8-8-8zM28 34c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6zM32.553 25.553l-6-6c-0.195-0.195-0.451-0.293-0.707-0.293s-0.512 0.098-0.707 0.293c-0.391 0.391-0.391 1.024 0 1.414l5.293 5.293-5.293 5.293c-0.391 0.391-0.391 1.024 0 1.414s1.024 0.391 1.414 0l6-6c0.391-0.391 0.391-1.024 0-1.414z"></path>
+                    </svg>
+                    <p><strong>Calidad Garantizada:</strong> Diseños con durabilidad y brillo perdurable.</p>
+                </div>
+                <div class="testimonial">
+                    <p>"Excelente servicio 🥰, linda atención y joyería de muy buena calidad 🫶🏻…"</p>
+                    <span>- Eugenia Díaz.</span>
+                </div>
+                <div class="testimonial">
+                    <p>"Aparte de que el local es precioso y su ubicación es céntrica, de verdad nadie se puede arrepentir de gastar su dinero aquí, todo es muy bonito, precios justos y para nada elevados y con mucha calidad, se da justo lo que te ofrecen y más, quedas muy sorprendido y satisfecho con tus compras, y el trato es una maravilla🩷…"</p>
+                    <span>- Esmeralda Sigala.</span>
+                </div>
+                <div class="testimonial">
+                    <p>"El mejor lugar para tener la joyería más divina al mejor precio!! Tengo un collar que ya va para el año y no se ha hecho feo! Neta 10/10 vayan a su tienda, tiene variedad de joyería y más! 💗…</p>
+                    <span>- Frida Duran.</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA FINAL (Doble acción: Social y Física) - Fondo Rosa Principal -->
+        <section id="final-cta" class="container fade-in">
+            <h2>Únete a la Comunidad Carlota's</h2>
+            <p>Inspírate con nuestros looks en Instagram o vive la experiencia completa en nuestra tienda física.</p>
+            <div class="cta-buttons">
+                <!-- Botón Instagram -->
+                <a href="https://www.instagram.com/carlotasjewelry_/" target="_blank" class="cta-button">Síguenos en Instagram</a>
+                <!-- Botón Tienda -->
+                <a href="#location" class="cta-button secondary">Visítanos en nuestra tienda</a>
+            </div>
+        </section>
+
+        <!-- UBICACIÓN Y CONTACTO (Conversión Final) - Fondo Rosa Medio -->
+        <section id="location" class="container fade-in">
+            <div class="location-content">
+                <div class="location-info">
+                    <h3>Encuéntranos</h3>
+                    <p>3a sur entre 6ª y 7ª poniente #744, Col. Centro, Tuxtla Gtz, Chis.</p>
+                    <p><strong>Horarios:</strong> Lunes a Viernes 11 am - 7:30 pm (Sábados 11 am - 7 pm)</p>
+                    <!-- Enlace a WhatsApp (debe incluir el prefijo de país si se usa fuera de México) -->
+                    <a href="https://wa.me/XXXXXXXXXX" target="_blank" class="whatsapp-button">Contactar por WhatsApp</a>
+                </div>
+                <div class="location-map">
+                    <!-- Mapa real de la ubicación proporcionada (Tuxtla Gtz) -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d927.933355587362!2d-93.12208436070571!3d16.752006553871546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ecd9f84c50b66d%3A0x18094f2508dafb0!2sCARLOTAS%20JEWELRY!5e0!3m2!1ses-419!2smx!4v1757126862390!5m2!1ses-419!2smx" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER - Fondo Rosa Suave (Base) -->
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="footer-brand">
+                <h4>Carlota's Jewelry</h4>
+                <p>El lugar favorito de las girls.</p>
+            </div>
+            <div class="footer-social">
+                <!-- Íconos de redes sociales (SVG) -->
+                <a href="https://www.instagram.com/carlotasjewelry_/" aria-label="Instagram">
+                    <svg fill="#333333" viewBox="0 0 24 24" width="24px" height="24px" style="opacity: 0.6; transition: opacity 0.3s ease;">
+                        <path d="M12 2.163c3.204 0 3.584.013 4.85.074 1.164.057 1.785.249 2.227.423.473.189.79.43.989.629.199.199.44.516.628.989.174.442.366 1.063.423 2.227.061 1.266.074 1.646.074 4.85s-.013 3.584-.074 4.85c-.057 1.164-.249 1.785-.423 2.227-.189.473-.43.79-.629.989-.199.199-.516.44-.989.628-.442.174-1.063.366-2.227.423-1.266.061-1.646.074-4.85.074s-3.584-.013-4.85-.074c-1.164-.057-1.785-.249-2.227-.423-.473-.189-.79-.43-.989-.629-.199-.199-.44-.516-.628-.989-.174-.442-.366-1.063-.423-2.227-.061-1.266-.074-1.646-.074-4.85s.013-3.584.074-4.85c.057-1.164.249-1.785.423-2.227.189-.473.43-.79.629-.989.199-.199.516-.44.989-.628.442-.174 1.063-.366 2.227-.423C8.416 2.176 8.796 2.163 12 2.163zm0 1.55c-3.153 0-3.486.012-4.706.072-1.026.05-1.57.23-1.99.397-.433.176-.713.407-.864.558-.151.151-.382.431-.558.864-.167.42-.347.964-.397 1.99-.06 1.22-.072 1.553-.072 4.706s.012 3.486.072 4.706c.05 1.026.23 1.57.397 1.99.176.433.407.713.558.864.151.151.431.382.864.558.42.167.964.347 1.99.397 1.22.06 1.553.072 4.706.072s3.486-.012 4.706-.072c1.026-.05 1.57-.23 1.99-.397.433-.176.713-.407.864-.558.151-.151.382-.431.558-.864.167-.42.347-.964.397-1.99.06-1.22.072-1.553.072-4.706s-.012-3.486-.072-4.706c-.05-1.026-.23-1.57-.397-1.99-.176-.433-.407-.713-.558-.864-.151-.151-.431-.382-.864-.558-.42-.167-.964-.347-1.99-.397-1.22-.06-1.553-.072-4.706-.072zM12 7.822c-2.3 0-4.178 1.878-4.178 4.178s1.878 4.178 4.178 4.178 4.178-1.878 4.178-4.178-1.878-4.178-4.178-4.178zM12 5.918c3.353 0 6.082 2.729 6.082 6.082s-2.729 6.082-6.082 6.082-6.082-2.729-6.082-6.082 2.729-6.082 6.082-6.082zm6.75-1.748c0.528 0 0.957 0.429 0.957 0.957s-0.429 0.957-0.957 0.957-0.957-0.429-0.957-0.957 0.429-0.957 0.957-0.957z"/>
+                    </svg>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=61552801936909" aria-label="Facebook">
+                    <svg fill="#333333" viewBox="0 0 24 24" width="24px" height="24px" style="opacity: 0.6; transition: opacity 0.3s ease;">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 5.099 3.784 9.358 8.75 9.873V15.5h-2v-3h2v-2c0-2.4 1.4-3.5 3.5-3.5 1.058 0 2.126.31 2.126.31v2.5h-1.284c-1.246 0-1.63.775-1.63 1.577v1.123h3.5l-.56 3h-2.94V21.873C18.216 21.358 22 17.099 22 12c0-5.523-4.477-10-10-10z"/>
+                    </svg>
+                </a>
+                <a href="https://www.tiktok.com/@carlotas.jewerly?_t=ZS-8vu94BIZmbf&_r=1" aria-label="Tik Tok">
+                    <svg fill="#333333" viewBox="0 0 24 24" width="24px" height="24px" style="opacity: 0.6; transition: opacity 0.3s ease;">
+                        <path d="M18.887 1.157c.18.064.333.15.46.257.12.099.213.208.283.33.07.122.112.25.13.385.018.134.024.269.018.402v9.333c0 .167-.14.333-.333.333h-1.334c-.193 0-.333-.166-.333-.333V9.584c0-.095-.018-.184-.055-.262-.038-.078-.09-.15-.157-.215-.067-.065-.145-.115-.235-.15-.09-.035-.188-.052-.294-.052h-2.121c-.347 0-.54.34-.333.666l.995 2.121c.174.37.262.753.262 1.144v4.334c0 .167-.14.333-.333.333H8.333c-.193 0-.333-.166-.333-.333V9.584c0-.095-.018-.184-.055-.262-.038-.078-.09-.15-.157-.215-.067-.065-.145-.115-.235-.15-.09-.035-.188-.052-.294-.052H4.444c-.347 0-.54.34-.333.666l.995 2.121c.174.37.262.753.262 1.144v4.334c0 .167-.14.333-.333.333H.778c-.193 0-.333-.166-.333-.333V5.556c0-.167.14-.333.333-.333H3.222c.193 0 .333.166.333.333V16.89c0 .167-.14.333-.333.333H1.444V9.584c0-.095-.018-.184-.055-.262-.038-.078-.09-.15-.157-.215-.067-.065-.145-.115-.235-.15-.09-.035-.188-.052-.294-.052H.778c-.193 0-.333-.166-.333-.333V5.556c0-.167.14-.333.333-.333h1.334c.193 0 .333
+</path>
+                    </svg>
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="#">Garantía</a>
+                <a href="#">Políticas de Devolución</a>
+                <a href="#">Aviso de Privacidad</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Carlota's Jewelry. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- INCLUSIÓN DE LIBRERÍA SWIPER Y SCRIPT DE INICIALIZACIÓN (scripts.js integrado) -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Inicialización del carrusel deslizable y adaptable (Swiper)
+            var swiper = new Swiper(".mySwiper", {
+                loop: true, 
+                centeredSlides: true, 
+                grabCursor: true, 
+                spaceBetween: 15, 
+                autoplay: {
+                    delay: 4000,
+                    disableOnInteraction: false,
+                },
+                pagination: {
+                    el: ".swiper-pagination",
+                    clickable: true,
+                },
+                // Configuración responsive para diferentes tamaños de pantalla
+                breakpoints: {
+                    // Móviles
+                    0: {
+                        slidesPerView: 1.25, 
+                    },
+                    // Tablets
+                    768: {
+                        slidesPerView: 2.5,
+                    },
+                    // Escritorio
+                    1024: {
+                        slidesPerView: 3,
+                        spaceBetween: 20,
+                    },
+                }
+            });
+
+            // Animación de aparición (fade-in) al hacer scroll
+            const faders = document.querySelectorAll('.fade-in');
+            const appearOptions = {
+                threshold: 0.2, // Empieza a aparecer cuando el 20% del elemento es visible
+                rootMargin: "0px 0px -50px 0px"
+            };
+            const appearOnScroll = new IntersectionObserver(function(
+                entries,
+                appearOnScroll
+            ) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        // Aplica los estilos finales (opacidad 1 y sin traslación)
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        // Deja de observar el elemento
+                        appearOnScroll.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+        });
+    </script>
+</body>
+</html>
